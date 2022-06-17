@@ -12,15 +12,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CounterPage extends StatelessWidget {
-  const CounterPage({required this.intialValue, super.key});
+  const CounterPage({required this.initialValue, super.key});
 
-  final int intialValue;
+  final int initialValue;
 
   @override
   Widget build(BuildContext context) {
-    print("counter page value : $intialValue");
+    print('counter page value : $initialValue');
     return BlocProvider(
-      create: (_) => CounterCubit(intialValue: intialValue),
+      create: (_) =>
+          CounterCubit(intialValue: initialValue)..load(initialValue),
       child: const CounterView(),
     );
   }
@@ -28,7 +29,6 @@ class CounterPage extends StatelessWidget {
 
 class CounterView extends StatelessWidget {
   const CounterView({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class CounterView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () =>  context.go('/counter/${count + 1}'),
+            onPressed: () => context.go('/counter/${count + 1}'),
             child: const Icon(Icons.add),
           ),
           const SizedBox(height: 8),

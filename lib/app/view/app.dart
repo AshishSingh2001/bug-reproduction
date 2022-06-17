@@ -14,7 +14,6 @@ import 'package:go_router/go_router.dart';
 class App extends StatelessWidget {
   App({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -37,7 +36,6 @@ class App extends StatelessWidget {
     );
   }
 
-
   // ignore: avoid_field_initializers_in_const_classes
   final _router = GoRouter(
     initialLocation: '/counter/1',
@@ -50,13 +48,11 @@ class App extends StatelessWidget {
       GoRoute(
         path: '/counter/:id',
         builder: (_, state) => CounterPage(
-          intialValue: int.parse(state.params['id']!),
+          initialValue: int.parse(state.params['id']!),
         ),
       ),
     ],
   );
-  
-
 }
 
 // class App extends StatelessWidget {

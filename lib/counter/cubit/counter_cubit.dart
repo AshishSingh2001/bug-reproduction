@@ -8,9 +8,14 @@
 import 'package:bloc/bloc.dart';
 
 class CounterCubit extends Cubit<int> {
-  CounterCubit({required this.intialValue}) : super(intialValue);
+  CounterCubit({required this.intialValue}) : super(-1);
 
   final int intialValue;
+
+  void load(int newValue) {
+    print('loaded value $newValue');
+    emit(newValue);
+  }
 
   void increment() => emit(state + 1);
   void decrement() => emit(state - 1);
