@@ -42,12 +42,22 @@ class CounterView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => context.go('/counter/${count + 1}'),
+            onPressed: () {
+              //? when we only go to the count+1 route the state is not updating
+              context.go('/counter/${count + 1}');
+              //? we need to uncomment the below line for the state to update as well
+              //? this seems counter intutive as the state should only depend on the route and not on how I manage the state afterwards
+              // context.read<CounterCubit>().load(count + 1);
+            },
             child: const Icon(Icons.add),
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
-            onPressed: () => context.go('/counter/${count - 1}'),
+            onPressed: () {
+              context.go('/counter/${count - 1}');
+              //? same applies to this as well where we need to update the state manually rather than it updating itself from route
+              // context.read<CounterCubit>().load(count - 1);
+            },
             child: const Icon(Icons.remove),
           ),
         ],
